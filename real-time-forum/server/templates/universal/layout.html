@@ -1,0 +1,38 @@
+{{ define "layout" }}
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <!-- Dunno what this all is, just copy-pasted it -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ .GenericData.Title }}</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Source+Serif+Pro&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/themes/{{ with .GenericData.Theme }}{{ . }}.css{{ else }}Dark.css{{ end }}">
+        <link rel="icon" href="/img/favicon.ico">
+
+        <link rel="prefetch" href="/img/logo-hover.png">
+    </head>
+
+    <body class="texture-light">
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/href-changer.js"  type="module"></script>
+    {{ template "header" . }}
+    <div class="wrapper" id="content">
+        {{ template "content" . }}
+    </div>
+    {{ template "footer" . }}
+    <script src="/js/like-dislike.js"></script>
+    <script src="/js/settings.js"></script>
+    <script src="/js/user.js"></script>
+    <script src="/js/main.js" type="module"></script>
+    </body>
+    </html>
+{{ end }}

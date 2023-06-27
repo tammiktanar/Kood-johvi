@@ -1,0 +1,60 @@
+// * Abbreviations:
+// * c = color
+// * l = lighten
+// * d = darken
+// * t = transparent
+// * 
+// * Number with the `c` indicates the color
+// * Number with the second key indicates the % of change
+
+// Base colors
+//$--c0: #EEE5E9;
+$--c0: #2a3144;
+$--c1: #9ca761;
+$--c2: #a11577;
+
+// Color variations
+$--c0-d5: darken($--c0, 5);
+$--c0-d10: darken($--c0, 10);
+$--c0-l5: lighten($--c0, 5);
+
+$--c1-l5: lighten($--c1, 5);
+
+$--c2-l5: lighten($--c2, 5);
+$--c2-l10: lighten($--c2, 10);
+$--c2-l15: lighten($--c2, 15);
+$--c2-l20: lighten($--c2, 20);
+$--c2-t30: transparentize($--c2, 0.3);
+
+
+// Border stuff
+$--border-radius: 8px;
+$--border-width: 2px;
+
+// ############# GLOBAL STYLES ################
+
+// Fonts
+@font-face {
+    font-family: "Whitney Book";
+    src: url("/fonts/whitneybook.otf");
+}
+
+@font-face {
+    font-family: "Fort Quinsy";
+    src: url("/fonts/FORTQUINSY.otf");
+}
+
+:global(html) {
+    font-size: 16px;
+}
+
+:global(body) {
+    // Bla bla bla...
+    margin: 0;
+}
+
+// Fonts
+:global(*) {
+    font-family: "Whitney Book";
+    color: $--c1;
+}

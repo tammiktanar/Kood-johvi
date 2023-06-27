@@ -1,0 +1,21 @@
+{{- /*gotype: forum/internal/pages.boardData*/ -}}
+{{ define "threadList" }}
+    <div class="group-toggle" style="display: none;"></div>
+
+    <label id="threads" class="flex-row group-header no-collapse">
+        <span>Threads{{ with .ThisBoard.Name }}</span><span class="semi">&nbsp;in {{ . }}</span>{{ end }}
+        <div class="grow"></div>
+        {{ if and (ne .GenericData.User.UserID 0) (ne .BoardID 0) }}
+            <label id="new-thread-button" class="button flex-center" for="new-thread-toggle">Create new thread</label>
+        {{ end }}
+    </label>
+
+    {{ if and (ne .GenericData.User.UserID 0) (ne .BoardID 0) }}
+        <input id="new-thread-toggle" class="group-toggle" type="checkbox">
+        {{ template "newThread" . }}
+    {{ end }}
+
+    <div class="group-content">
+        {{ .ThreadSearch.GetResult }}
+    </div>
+{{ end }}

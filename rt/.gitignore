@@ -1,0 +1,10 @@
+# Jetbrains config directory
+/.idea
+
+# Rust build targets
+/target
+
+# Don't commit big rendered images
+*.ppm
+*.png
+*.exr

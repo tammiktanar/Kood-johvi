@@ -1,0 +1,27 @@
+<div class="container-xl col-lg-12">
+    <form action="/process" method="POST">
+        <input type="hidden" name="subAsciiArt" value="1" />
+        <div class="form-group mt-3">
+            <textarea class="form-control" id="textToConvert" rows="3" required placeholder="Input the text you want to be converted"></textarea>
+        </div>
+
+        <div class="form-group">
+            <select class="form-control mt-3" id="textStyleToConvert">
+                <option value="blank" selected disabled>Select Style</option>
+                <option>Standard</option>
+                <option>Shadow</option>
+                <option>Thinkertoy</option>
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="resText">Example textarea</label>
+            <textarea class="form-control" id="resText" rows="3">{{if .}}{{.}}{{end}}
+            </textarea>
+        </div>
+
+        <div class="col-md-12 mt-3">
+            <button type="submit" class="btn col-md-12 btn-primary mb-2">Submit</button>
+          </div>
+    </form>
+</div>

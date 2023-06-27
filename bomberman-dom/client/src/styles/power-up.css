@@ -1,0 +1,74 @@
+.power-up {
+    --border-color-r: 16;
+    --border-color-g: 202;
+    --border-color-b: 221;
+    --border-color-a-base: 0.2;
+    --border-color-a-dimmed: 0.1;
+
+    --border-inside-color-r: 33;
+    --border-inside-color-g: 179;
+    --border-inside-color-b: 252;
+    --border-inside-color-a-base: 0.2;
+    --border-inside-color-a-dimmed: 0.1;
+
+    --border-color-base: rgba(var(--border-inside-color-r), var(--border-inside-color-g), var(--border-inside-color-b), var(--border-inside-color-a-base));
+    --border-color-dimmed: rgba(var(--border-inside-color-r), var(--border-inside-color-g), var(--border-inside-color-b), var(--border-inside-color-a-dimmed));
+
+    --border-inside-color-base: rgba(var(--border-inside-color-r), var(--border-inside-color-g), var(--border-inside-color-b), var(--border-inside-color-a-base));
+    --border-inside-color-dimmed: rgba(var(--border-inside-color-r), var(--border-inside-color-g), var(--border-inside-color-b), var(--border-inside-color-a-dimmed));
+
+
+
+    border: 1px solid;
+    border-color: var(--border-color-base);
+    background-image: var(--power-up-background);
+    background-color: var(--border-inside-color-base);
+    background-position: center;
+    background-repeat: no-repeat;
+
+    animation: power-up-glow 1.5s infinite;
+}
+
+
+.thunder-power-up {
+    background-size: calc(29px * var(--scaling)) calc(27px * var(--scaling));
+    --power-up-background: url("/imgs/pickup_thunder.png");
+}
+
+.throw-power-up {
+    background-size: calc(32px * var(--scaling)) calc(32px * var(--scaling));
+    --power-up-background: url("/imgs/pickup_throw.png");
+}
+
+.speed-power-up {
+    background-size: calc(26px * var(--scaling)) calc(20px * var(--scaling));
+    --power-up-background: url("/imgs/pickup_speed.png");
+}
+
+.kick-power-up {
+    background-size: calc(26px * var(--scaling)) calc(26px * var(--scaling));
+    --power-up-background: url("/imgs/pickup_kick.png");
+}
+
+.bomb-power-up {
+    background-size: calc(25px * var(--scaling)) calc(20px * var(--scaling));
+    --power-up-background: url("/imgs/pickup_bomb.png");
+}
+
+@keyframes power-up-glow {
+    0% {
+        border-color: var(--border-color-base);
+        background-color: var(--border-inside-color-base);
+
+    }
+    50% {
+        border-color: var(--border-color-dimmed);
+        background-color: var(--border-inside-color-dimmed);
+
+    }
+    100%{
+        border-color: var(--border-color-base);
+        background-color: var(--border-inside-color-base);
+
+    }
+}

@@ -1,0 +1,53 @@
+.scoreBoard{
+	z-index: 3;
+	width: 100%;
+	height: 24.5px;
+	margin-top: 575px;
+
+	color: white;
+	font-family: 'Common Pixel', sans-serif;
+}
+
+.panelDiv{
+	width: 100%;
+	height: 100%;
+
+	background-color: grey;
+
+	border: #444;
+	border-style: outset;
+	border-width: 2px 0 0 0;
+}
+
+.fpsDiv{
+	margin-top: 5px;
+	width: 100%;
+
+	text-align: right;
+}
+.scoreDiv{
+	margin-top: 5px;
+	width: 35%;
+
+	text-align: right;
+}
+.levelDiv{
+	margin-top: 5px;
+	width: 100%;
+	
+	text-align: left;
+}
+
+.livesDiv{
+	margin-top: 2px;
+	width: 100%;
+
+	text-align: center;
+}
+
+.timerDiv{
+	margin-top: 5px;
+	padding-left: 65%;
+
+	text-align: right;
+}

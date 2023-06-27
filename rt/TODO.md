@@ -1,0 +1,23 @@
+- [x] Specular BRDF
+- [x] Transmission
+- [x] Reflection
+- [x] Clean up intersection/hit code
+- [x] Clean up material code
+- [x] Maybe Constructive Solid Geometry?
+- [x] Allow grouping shapes
+- [x] Allow referring to materials by ID
+- [x] Multiple importance sampling with direct lights
+- [x] Focal plane
+- [x] More shapes
+- [x] Sampling area lights
+- [x] Implement bounding volume hierarchy
+- [x] Tone mapping
+- [x] Real-time preview
+- [x] Set limits to all the builder fields when deserializing
+- [x] Naming objects
+- [x] Disallow unknown fields
+- [x] Fix groups hurting performance
+- [x] Add lights to docs
+- [x] Instancer objectlike
+- [x] Update documentation
+- [ ] Textured stuff

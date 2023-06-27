@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/imgs/pickup_bomb.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Bomberman</title>
+</head>
+<body>
+
+<header id="title-wrapper">
+    <div><label id="title">Bomberman</label></div>
+    <div><label>Scaling</label><button id="scaling-down">---</button><button id="scaling-up">+++</button></div>
+</header>
+<div id="app" class="no-select" tabindex="0" autofocus>
+    <div id="chat">
+        <div id="chat-messages" class="chat-messages-div"></div>
+        <input id="chat-input" class="chat-input" placeholder="Enter text">
+    </div>
+</div>
+
+<script type="module" src="./src/main.ts"></script>
+</body>
+</html>

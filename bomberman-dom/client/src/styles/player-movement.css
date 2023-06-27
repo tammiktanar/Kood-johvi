@@ -1,0 +1,167 @@
+.bomber {
+    z-index: 10;
+}
+
+div.bomber > .sprite {
+    width: calc(30px * var(--scaling));
+    height: calc(35px * var(--scaling));
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: calc(-10px * var(--scaling));
+
+    background-image: var(--down1);
+
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(1, start);
+}
+
+.bomber > .sprite > .overlay {
+    width: calc(30px * var(--scaling));
+    height: calc(35px * var(--scaling));
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    background-image: var(--down1);
+
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(1, start);
+}
+
+/* Player 1*/
+.bomber > .sprite {
+    --up1: url("/imgs/w_up1.png");
+    --up2: url("/imgs/w_up2.png");
+    --up3: url("/imgs/w_up3.png");
+
+    --down1: url("/imgs/w_down1.png");
+    --down2: url("/imgs/w_down2.png");
+    --down3: url("/imgs/w_down3.png");
+
+    --side1: url("/imgs/w_side1.png");
+    --side2: url("/imgs/w_side2.png");
+    --side3: url("/imgs/w_side3.png");
+}
+
+.bomber > .sprite > .overlay {
+    --up1: url("/imgs/wo_up1.png");
+    --up2: url("/imgs/wo_up2.png");
+    --up3: url("/imgs/wo_up3.png");
+
+    --down1: url("/imgs/wo_down1.png");
+    --down2: url("/imgs/wo_down2.png");
+    --down3: url("/imgs/wo_down3.png");
+
+    --side1: url("/imgs/wo_side1.png");
+    --side2: url("/imgs/wo_side2.png");
+    --side3: url("/imgs/wo_side3.png");
+}
+
+
+/* Animations */
+
+@keyframes player-moving-side {
+    25% {
+        background-image: var(--side2);
+    }
+
+    50% {
+        background-image: var(--side1);
+    }
+
+    75% {
+        background-image: var(--side3);
+    }
+
+    100% {
+        background-image: var(--side1);
+    }
+}
+
+
+@keyframes player-moving-up {
+    25% {
+        background-image: var(--up2);
+    }
+
+    50% {
+        background-image: var(--up1);
+    }
+
+    75% {
+        background-image: var(--up3);
+    }
+
+    100% {
+        background-image: var(--up1);
+    }
+}
+
+
+@keyframes player-moving-down {
+    25% {
+        background-image: var(--down2);
+    }
+
+    50% {
+        background-image: var(--down1);
+    }
+
+    75% {
+        background-image: var(--down3);
+    }
+
+    100% {
+        background-image: var(--down1);
+    }
+}
+
+
+.bomber.moving[data-direction="right"] > .sprite,
+.bomber.moving[data-direction="right"] > .sprite > .overlay  {
+    animation-name: player-moving-side;
+}
+
+.bomber[data-direction="right"] > .sprite,
+.bomber[data-direction="right"] > .sprite > .overlay  {
+    background-image: var(--side1);
+}
+
+.bomber.moving[data-direction="left"] > .sprite,
+.bomber.moving[data-direction="left"] > .sprite > .overlay  {
+    animation-name: player-moving-side;
+}
+
+.bomber[data-direction="left"] > .sprite {
+    transform: translate(-50%, 0) scaleX(-1);
+}
+
+.bomber[data-direction="left"] > .sprite,
+.bomber[data-direction="left"] > .sprite > .overlay  {
+    background-image: var(--side1);
+}
+
+
+.bomber.moving[data-direction="up"] > .sprite,
+.bomber.moving[data-direction="up"] > .sprite > .overlay  {
+    animation-name: player-moving-up;
+}
+
+.bomber[data-direction="up"] > .sprite, 
+.bomber[data-direction="up"] > .sprite > .overlay  {
+    background-image: var(--up1);
+}
+
+
+.bomber.moving[data-direction="down"] > .sprite,
+.bomber.moving[data-direction="down"] > .sprite > .overlay {
+    animation-name: player-moving-down;
+}
+
+.bomber[data-direction="down"] > .sprite,
+.bomber[data-direction="down"] > .sprite > .overlay  {
+    background-image: var(--down1);
+}

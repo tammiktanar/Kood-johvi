@@ -1,0 +1,28 @@
+{{ define "searchbar"}}
+
+<form action="/search" method="get" class="d-flex w-25">
+    <select id="bap" class="multiple-tags" style="width: 100%;" name="tags">
+        <option></option>
+        {{ range .AllTags}}
+        <option value="{{.}}">{{.}}</option>
+        {{ end }}
+    </select>
+    <button type="submit" id="searchbtn"><i class="fas fa-search"></i></button>
+
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+
+    $('.multiple-tags').select2({
+        placeholder: "Search for a tag..."
+    });
+
+
+
+</script>
+
+
+
+{{ end}}

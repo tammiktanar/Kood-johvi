@@ -1,0 +1,29 @@
+{{template "header"}}
+{{template "navBar"}}
+    <div class="container-xl col-lg-12">
+        <form id="formToSubmit" action="/process" method="POST">
+
+            <div class="row mt-3">
+                {{ range .}}
+                    <div class="card" id='artistID{{.ID}}' style="width: 18rem; margin-left: 2rem; margin-bottom: 2rem;">
+                        <img class="card-img-top mt-3" src='{{ .Image}}' alt="Card image cap">
+                        <div class="card-body">
+                            <h5 id='artistName{{.ID}}' class="card-title">{{.Name}}</h5>
+                            <p class="card-text">{{ range .Members}} {{.}} </br> {{ end}}</p>
+                            <a href="/artist/{{.ID}}" class="btn btn-primary">See more</a>
+                        </div>
+                    </div>
+                {{ end}}
+            </div>
+        </form>
+    </div>
+
+
+
+
+    <script src="/js/custom.js"></script>
+
+
+    
+
+{{template "footer"}}

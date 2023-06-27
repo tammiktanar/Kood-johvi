@@ -1,0 +1,70 @@
+{{- /*gotype: forum/internal/pages.registerData*/ -}}
+{{ define "content" }}
+<h3> Register </h3>
+<form method="POST" action="/register" class="register-form" novalidate>
+    <table class="register-form">
+        <tr>
+            <td><label>Username</label>: </td>
+            <td><input name="username" type="text" value="{{ .Inputs.Get "username" }}" /></td>
+            {{ if .Errors.Username }}
+            <td class="error">{{ .Errors.Username }}</td>
+            {{else}}
+            <td>Length must be between 4 and 12 characters.</td>
+            {{ end }}
+        </tr>
+
+        <tr>
+            <td><label>Password</label>: </td>
+            <td><input name="password" type="password" /></td>
+            {{ if .Errors.Password }}
+            <td class="error"> {{ .Errors.Password }}</td>
+            {{else}}
+            <td>Length must be between 6 and 128 characters. </td>
+            {{ end }}
+        </tr>
+
+        <tr>
+            <td><label>Confirm password</label>: </td>
+            <td><input name="confirm-password" type="password" id="password" /></td>
+            <td class="error">{{ if .Errors.Password2 }}{{ .Errors.Password2 }}{{ end }}</td>
+        </tr>
+
+        <tr>
+            <td><label>E-mail</label>: </td>
+            <td><input name="email" type="email" value="{{ .Inputs.Get "email" }}"></td>
+            <td class="error">{{ if .Errors.Email }}{{ .Errors.Email }}{{ end }}</td>
+        </tr>
+
+        <tr>
+            <td><label>Confirm e-mail</label>: </td>
+            <td><input name="confirm-email" type="email" value="{{ .Inputs.Get "confirm-email" }}"></td>
+            <td class="error">{{ if .Errors.Email2 }}{{ .Errors.Email2 }}{{ end }}</td>
+        </tr>
+
+        <tr>
+            <td><label>Birthday</label>: </td>
+            <td><input name="birthday" type="date" value="{{ .Inputs.Get "birthday" }}"></td>
+            <td class="error">{{ if .Errors.Birthday }}{{ .Errors.Birthday }}{{ end }}</td>
+        </tr>
+
+        <tr>
+            <td><label>Gender</label>: </td>
+            <td style="display: flex;"><span>F</span><input name="gender" type="range" min="0" max="1" step="0.0001" value="{{ with .Inputs.Get "gender" }}{{.}}{{ else }}0.5{{ end }}"><span>M</span></td>
+            <td class="error">{{ if .Errors.Gender }}{{ .Errors.Gender }}{{ end }}</td>
+        </tr>
+
+        <tr>
+            <td><label>First Name</label>: </td>
+            <td><input name="first-name" type="text" value="{{ .Inputs.Get "first-name" }}"></td>
+            <td class="error">{{ if .Errors.FirstName }}{{ .Errors.FirstName }}{{ end }}</td>
+        </tr>
+
+        <tr>
+            <td><label>Last Name</label>: </td>
+            <td><input name="last-name" type="text" value="{{ .Inputs.Get "last-name" }}"></td>
+            <td class="error">{{ if .Errors.LastName }}{{ .Errors.LastName }}{{ end }}</td>
+        </tr>
+    </table>
+    <input class="button" type="submit" value="Register" />
+</form>
+{{ end }}

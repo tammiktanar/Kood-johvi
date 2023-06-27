@@ -1,0 +1,10 @@
+[package]
+name = "drawing"
+description = "A program that draws shapes on image"
+version = "0.1.0"
+edition = "2021"
+authors = ["Urmas Rist <urmas.rist@gmail.com>", "AS <andris.sass@protonmail.com>", "tammiktanar <you@example.com>"]
+
+[dependencies]
+raster = "0.2.0"
+rand = "0.8.5"

@@ -1,0 +1,34 @@
+version: "3.3"
+
+services:
+  backend:
+    build: ./backend
+    image: backend:sn
+    container_name: be-sn_c
+    volumes:
+      - ./backend/persist:/app/persist
+    networks:
+      nw:
+        ipv4_address: 192.168.0.2
+    environment:
+      FRONTEND_ADDRESS: "192.168.0.3"
+
+  frontend:
+    build: ./frontend
+    image: frontend:sn
+    container_name: fe-sn_c # shorthand for "FrontEnd-SocialNetwork_Container"
+    ports:
+      - "${FRONTEND_PORT}:3000"
+    networks:
+      nw:
+        ipv4_address: 192.168.0.3
+    depends_on:
+      - "backend"
+    environment:
+      VITE_BACKEND_ADDRESS: "192.168.0.2"
+networks:
+  nw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24

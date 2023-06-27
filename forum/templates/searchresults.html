@@ -1,0 +1,31 @@
+{{template "base" .}}
+{{ define "content" }}
+
+<div class="container w-50 my-3 d-flex flex-column align-items-end gap-5 ">
+
+    <div class="card w-100 card-bg">
+        <div class="card-header d-flex justify-content-between">
+            <span class="align-self-center">Featured</span>
+        </div>
+        <ul class="list-group list-group-flush">
+            {{ range .Results}}
+
+            <li class="list-group-item card-bg">
+                <p class="card-text "><a href="/post?id={{.ID}}"
+                        class="link-light text-decoration-none text-capitalize"> <i class="fas fa-clone"></i>
+                        {{.Title}}</a>
+                </p>
+
+
+                <small class="text-muted">Tags:{{range .Tags}} {{.}} {{end}}</small>
+                <br>
+                <small class="text-muted">Topic started: {{.CreationDate}}</small>
+            </li>
+            {{ end}}
+
+        </ul>
+    </div>
+
+
+
+    {{ end }}

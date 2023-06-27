@@ -1,0 +1,178 @@
+(
+    name: "cool_shape",
+    sky: (0.02, 0.03, 0.05),
+    cameras: {
+        // Note that I'm using indirect_only and clamping a lot in this scene.
+        // That's because I'm using a lot of specular materials which are causing fireflies.
+        // In a less shiny scene you'd probably want to take them off.
+        "diagonal": (
+            pos: (0, 4.9, 6),
+            look_at: (0, 1.8, 0),
+            bounces: 50,
+            samples: 600,
+            fov: 60,
+            width: 600,
+            height: 600,
+            aperature: 0.1,
+            focus_distance: 5,
+            indirect_only: true,
+            clamping: 100,
+        ),
+        "closeup": (
+            pos: (0, 2.5, -2.5),
+            look_at: (0, 1.8, 0),
+            bounces: 50,
+            samples: 600,
+            fov: 120,
+            width: 600,
+            height: 600,
+            aperature: 0.05,
+            focus_distance: 2,
+            indirect_only: true,
+            clamping: 100,
+        ),
+        "hole": (
+            pos: (3.1, 1, 2.4),
+            look_at: (0, 2, 0),
+            bounces: 50,
+            samples: 600,
+            fov: 80,
+            width: 600,
+            height: 600,
+            aperature: 0.05,
+            focus_distance: 1.7,
+            indirect_only: true,
+            clamping: 100,
+        ),
+    },
+    // post_process: [] // Commented out = defaults
+    objects: [
+        (
+            type: "object",
+            transform: (
+                translate: (0, -1, 0),
+            ),
+            shape: "plane",
+            material: "ground",
+        ),
+        (
+            type: "instancer",
+            object: "lattice_with_light",
+            transforms: [
+                (
+                    translate: (0, 2, 0),
+                    rotate: (75, 70, 23),
+                ),
+            ],
+        ),
+    ],
+    templates: {
+        "lattice_with_light": (
+            type: "group",
+            objects: [
+                "cool_lattice",
+                (
+                    type: "object",
+                    shape: "ball",
+                    transform: (scale: 0.5),
+                    material: "light",
+                ),
+            ],
+        ),
+        "cool_lattice":
+        (
+            type: "instancer",
+            object: "cool_shape",
+            transform_all: (translate: (-2, -2, -2)),
+            transforms: [
+                (translate: (0.0, 2.0, 2.0)),
+                (translate: (2.0, 0.0, 2.0)),
+                (translate: (2.0, 2.0, 0.0)),
+                (translate: (2.0, 2.0, 4.0)),
+                (translate: (2.0, 4.0, 2.0)),
+                (translate: (4.0, 2.0, 2.0)),
+            ],
+        ),
+        "cool_shape": (
+            type: "difference",
+            objects: [
+                "rounded_box",
+                "cylinder_cross",
+            ]
+        ),
+        "rounded_box": (
+            type: "intersection",
+            objects: [
+                (
+                    type: "object",
+                    shape: "box",
+                    material: "ring",
+                ),
+                (
+                    type: "object",
+                    shape: "sphere",
+                    transform: (scale: 1.3),
+                    material: "outer",
+                ),
+            ]
+        ),
+        "cylinder_cross": (
+            type: "union",
+            objects: [
+                (
+                    type: "instancer",
+                    object: "cylinder",
+                    transforms: [
+                        (),
+                        (rotate: (90, 0, 0)),
+                        (rotate: (0, 0, 90)),
+                    ],
+                ),
+            ]
+        ),
+        "cylinder": (
+            type: "object",
+            shape: "cylinder",
+            transform: (scale: (0.6, 1.001, 0.6)),
+            material: "inner",
+        )
+    },
+    lights: [
+        (
+            type: "directional",
+            direction: (3, -2, 1),
+            // emission: (0.992, 0.984, 0.827),
+            emission: (2.976, 2.952, 2.481),
+        )
+    ],
+    materials: {
+        "ground": (
+            type: "metal",
+            color: (0.8, 0.8, 0.8),
+            roughness: 0.3,
+        ),
+        "inner": (
+            type: "metal",
+            color: (0.972, 0.960, 0.915),
+            roughness: 0.2,
+        ),
+        "ring": (
+            type: "metal",
+            color: (1.022, 0.782, 0.344),
+            roughness: 0.4,
+        ),
+        "outer": (
+            type: "glossy",
+            color: (0.1, 0.2, 0.9),
+            roughness: 0.3,
+            reflectance: 0.5,
+        ),
+        "light": (
+            type: "diffuse",
+            emission: (10, 10, 10),
+        ),
+        "mirror": (
+            type: "mirror",
+        )
+    },
+)

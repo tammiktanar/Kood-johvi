@@ -1,0 +1,452 @@
+#main-menu {
+    width: calc(552px * var(--scaling));
+    height: 100%;
+
+    padding: calc(9px * var(--scaling));
+}
+
+#sidebar {
+    width: calc(93px * var(--scaling));
+    height: 100%;
+
+    padding: calc(10px * var(--scaling));
+	position:relative;
+}
+
+.image-button {
+	background-image: var(--button-image);
+	background-color: var(--button-image-color);
+
+	width: var(--button-image-width);
+	height: var(--button-image-height);
+
+    background-size: cover;
+	border: 0;
+	font-family: "withFireFont", sans-serif;
+	font-size: var(--button-image-font-size);
+	text-shadow: calc(1px * var(--scaling)) calc(1px * var(--scaling)) rgba(255, 255, 255, 0.6);
+
+	padding-left: calc(21px * var(--scaling));
+}
+
+
+.image-button:hover {
+	cursor: pointer;
+	
+	background-color: var(--button-image-hover-color);
+	filter: var(--button-image-filter)
+}
+
+
+#sidebar > .quit-game {
+    --button-image: unset;
+	--button-image-width: calc(73px * var(--scaling));
+	--button-image-height: calc(17px * var(--scaling));
+	--button-image-color: rgba(0, 0, 0, 0);
+	--button-image-hover-color: rgba(182, 182, 182, 0.452);
+	--button-image-filter: ;
+	--button-image-font-size: calc(5px * var(--scaling));
+
+
+	vertical-align: baseline;
+	position:absolute;
+	bottom: calc(10px * var(--scaling));
+	
+
+}
+
+.start-game {
+    --button-image: url("/imgs/empty_button.png");
+	--button-image-width: calc(100px * var(--scaling));
+	--button-image-height: calc(21px * var(--scaling));
+	--button-image-color: rgba(0,0,0,0);
+	--button-image-hover-color: rgba(0, 0, 0, 0);
+	--button-image-filter: brightness(80%);
+	--button-image-font-size: calc(10px * var(--scaling));
+}
+
+#sidebar > .fx-button {
+	--button-image: unset;
+	--button-image-width: calc(37px * var(--scaling));
+	--button-image-height: calc(19px * var(--scaling));
+	--button-image-color: rgba(0, 0, 0, 0);
+	--button-image-hover-color: rgba(0, 0, 0, 0);
+	--button-image-filter: ;
+
+	background-size: contain;
+	background-repeat: no-repeat;
+
+	position: absolute;
+	top: calc(361px * var(--scaling));
+	left: calc(47px * var(--scaling))
+}
+
+#sidebar > .fx-button[data-fx="false"] {
+    --button-image: url("/imgs/fx.png");
+
+}
+
+
+#sidebar > .music-button {
+	--button-image: unset;
+	--button-image-width: calc(41px * var(--scaling));
+	--button-image-height: calc(19px * var(--scaling));
+	--button-image-color: rgba(0, 0, 0, 0);
+	--button-image-hover-color: rgba(0, 0, 0, 0);
+	--button-image-filter: ;
+
+
+	position: absolute;
+	top: calc(360px * var(--scaling));
+	left: calc(8px * var(--scaling));
+}
+
+#sidebar > .music-button[data-music="false"] {
+    --button-image: url("/imgs/music.png");
+
+}
+
+
+
+
+
+@font-face {
+	font-family: "withFireFont";
+	src: url("/visitor1.ttf");
+}
+
+
+
+#sidebar > .timer {
+	width: calc(29px * var(--scaling));
+	height: calc(12px * var(--scaling));
+	background-color: rgba(255, 255, 255, 0);
+
+	text-align: center;
+
+	font-family: "withFireFont", sans-serif;
+	padding-top: calc(2px * var(--scaling));
+	padding-left: calc(1px * var(--scaling));
+	font-size: calc(10px * var(--scaling));
+	color: yellow;
+
+	top: calc(330px * var(--scaling));
+	left: calc(46px * var(--scaling));
+	position:absolute;
+}
+
+#sidebar > .timerBar {
+	max-width: calc(59px * var(--scaling));
+	height: calc(7px * var(--scaling));
+	--progress-bar-color: darkred;
+	background-color: transparent;
+
+	border: var(--white) calc(1px * var(--scaling)) solid;
+	border-radius: calc(3px * var(--scaling));
+	
+	top: calc(348px * var(--scaling));
+	left: calc(17px * var(--scaling));
+	position:absolute;
+}
+progress::-moz-progress-bar { background: var(--progress-bar-color); }
+progress::-webkit-progress-value { background: var(--progress-bar-color); 
+}
+progress { color: var(--progress-bar-color); }
+
+
+#sidebar > .lives {
+	width: calc(20px * var(--scaling));
+	height: calc(11px * var(--scaling));
+	background-color: rgba(255, 255, 255, 0);
+
+	text-align: center;
+
+	font-family: "withFireFont", sans-serif;
+	font-size: calc(10px * var(--scaling));
+	color: yellow;
+
+	top: var(--lives-top);
+	left: var(--lives-left);
+	position:absolute;
+
+}
+
+
+#sidebar > .portrait[data-type="dead"] {
+	width: calc(63px * var(--scaling));
+	height: calc(38px * var(--scaling));
+	background-color: rgba(255, 255, 255, 0);
+	background-image: var(--dead-image);
+
+	text-align: center;
+
+	font-family: "withFireFont", sans-serif;
+	font-size: calc(10px * var(--scaling));
+	color: yellow;
+
+	top: var(--portrait-top);
+	left: var(--portrait-left);
+
+	position:absolute;
+}
+
+#sidebar > .portrait[data-type="disabled"] {
+	width: calc(61px * var(--scaling));
+	height: calc(36px * var(--scaling));
+	background-color: rgba(255, 255, 255, 0);
+	background-image: var(--disabled-image);
+
+	text-align: center;
+
+	font-family: "withFireFont", sans-serif;
+	font-size: calc(10px * var(--scaling));
+	color: yellow;
+
+	top: calc( var(--portrait-top) + calc(1px * var(--scaling)));
+	left: calc( var(--portrait-left) + calc(1px * var(--scaling)));
+	position:absolute;
+}
+
+#sidebar > .portrait[data-type="clothes"] {
+	width: calc(59px * var(--scaling));
+	height: calc(34px * var(--scaling));
+	background-color: rgba(255, 255, 255, 0);
+	background-image: var(--portrait-clothes);
+
+
+	text-align: center;
+
+	font-family: "withFireFont", sans-serif;
+	font-size: calc(10px * var(--scaling));
+	color: yellow;
+
+	top: calc( var(--portrait-top) + calc(2px * var(--scaling)));
+	left: calc( var(--portrait-left) + calc(2px * var(--scaling)));
+	position:absolute;
+}
+
+#sidebar > .p-1 {
+	--lives-left: calc(55px * var(--scaling));
+	--lives-top: calc(117px * var(--scaling));
+
+	--portrait-left: calc(15px * var(--scaling));
+	--portrait-top: calc(75px * var(--scaling));
+
+	--portrait-clothes: url("/imgs/w_portrait.png");
+	--dead-image: url("/imgs/dead_portrait.png");
+	--disabled-image: unset;
+}
+
+#sidebar > .p-2 {
+	--lives-left: calc(55px * var(--scaling));
+	--lives-top: calc(181px * var(--scaling));
+
+	--portrait-left: calc(15px * var(--scaling));
+	--portrait-top: calc(139px * var(--scaling));
+
+	--portrait-clothes: url("/imgs/w_portrait.png");
+	--dead-image: url("/imgs/dead_portrait.png");
+	--disabled-image: unset;
+}
+
+#sidebar > .p-3 {
+	--lives-left: calc(55px * var(--scaling));
+	--lives-top: calc(245px * var(--scaling));
+
+	--portrait-left: calc(15px * var(--scaling));
+	--portrait-top: calc(203px * var(--scaling));
+
+	--portrait-clothes: url("/imgs/w_portrait.png");
+	--dead-image: url("/imgs/dead_portrait.png");
+	--disabled-image: url("/imgs/purple-disabled.png");
+}
+
+#sidebar > .p-4 {
+	--lives-left: calc(55px * var(--scaling));
+	--lives-top: calc(309px * var(--scaling));
+
+	--portrait-left: calc(15px * var(--scaling));
+	--portrait-top: calc(267px * var(--scaling));
+
+	--portrait-clothes: url("/imgs/w_portrait.png");
+	--dead-image: url("/imgs/dead_portrait.png");
+	--disabled-image: url("/imgs/green-disabled.png");
+}
+
+
+
+
+
+#main-menu > input{
+	font-family: "withFireFont", sans-serif;
+	font-size: calc(10px * var(--scaling));
+
+	color: var(--white);
+	background-color: transparent;
+	border: calc(1px * var(--scaling)) solid var(--white);
+
+	margin: calc(2px * var(--scaling)) 0 0;
+	width: calc(95px * var(--scaling));
+	height: calc(12px * var(--scaling));
+	padding: calc(2px * var(--scaling));
+	outline: none;
+}
+
+#main-menu > .color-code {
+	padding: 0;
+	height: calc(24px * var(--scaling));
+	font-size: calc(10px * var(--scaling));
+	cursor: pointer;
+}
+
+
+.flex-container {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+}
+
+
+.lobby-text {
+	font-family: "withFireFont", sans-serif;
+	font-size: calc(10px * var(--scaling));
+	margin-bottom: calc(20px * var(--scaling))!important;
+	color: var(--white);
+	text-align: center;
+	text-shadow: calc(1px * var(--scaling)) calc(1px * var(--scaling)) black;
+}
+
+.lobby-text:hover {
+	cursor: pointer;
+}
+
+
+.player-list {
+	--player-width: calc(116px * var(--scaling));
+
+	margin-top: calc(30px * var(--scaling));
+	width: calc(var(--player-width) * 4);
+	height: var(--player-width);
+
+	display: flex;
+	flex-direction: row;
+}
+
+
+.player-skin {
+	width: var(--player-width);
+	height: var(--player-width);
+
+	background-image:  var(--player-big-skin);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: calc(15px * var(--scaling));
+
+}
+
+.player-clothes {
+	background-image: var(--player-big-clothes);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: calc(15px * var(--scaling));
+
+	width: 100%;
+	height: 100%;
+}
+
+
+.player-name {
+	margin-top: calc(10px * var(--scaling));
+	margin-bottom: calc(10px * var(--scaling));
+	color: var(--white);
+
+	text-align: center;
+	
+	font-family: "withFireFont", sans-serif;
+	font-size: calc(10px * var(--scaling));
+	text-shadow: calc(1px * var(--scaling)) calc(1px * var(--scaling)) black;
+}
+
+.sad {
+	--player-big-clothes: url("/imgs/wo_player_big_sad.png");
+	--player-big-skin: url("/imgs/w_player_big_sad.png");
+}
+
+.happy {
+	--player-big-clothes: url("/imgs/wo_player_big.png");
+	--player-big-skin: url("/imgs/w_player_big.png");
+}
+
+
+.sound-div {
+
+	position: absolute;
+	top: calc(15px * var(--scaling));
+	left: calc(450px * var(--scaling));
+
+	display: flex;
+
+}
+
+.sound-div > .fx-button:after {
+	display: block;
+	content: "FX";
+
+	font-family: "withFireFont", sans-serif;
+	font-size: calc(10px * var(--scaling));
+	color: var(--white);
+
+	text-shadow: calc(1px * var(--scaling)) calc(1px * var(--scaling)) black;
+}
+
+.sound-div > .fx-button:hover {
+	color: gray;
+}
+
+.sound-div > .music-button:after {
+	display: block;
+	content: "Music";
+
+	font-family: "withFireFont", sans-serif;
+	font-size: calc(10px * var(--scaling));
+	color: var(--white);
+
+	text-shadow: calc(1px * var(--scaling)) calc(1px * var(--scaling)) black;
+}
+
+.sound-div > .music-button:hover:after {
+	color: rgb(120, 120, 120)!important;
+}
+
+.sound-div > .fx-button:hover:after {
+	color: rgb(120, 120, 120)!important;
+}
+
+.sound-div > .fx-button:active {
+	transform: translate(calc(1px * var(--scaling)), calc(1px * var(--scaling)));
+}
+
+.sound-div > .music-button:active {
+	transform: translate(calc(1px * var(--scaling)), calc(1px * var(--scaling)));
+}
+
+.sound-div > .music-button[data-music="false"]:after {
+
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.sound-div > .fx-button[data-fx="false"]:after {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+
+.lobby-timer-text {
+	font-family: "withFireFont", sans-serif;
+	font-size: calc(10px * var(--scaling));
+	margin-bottom: calc(20px * var(--scaling))!important;
+	color: var(--white);
+	text-shadow: calc(1px * var(--scaling)) calc(1px * var(--scaling)) black;
+	text-align: center;
+	height: 1em;
+}

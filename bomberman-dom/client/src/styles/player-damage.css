@@ -1,0 +1,36 @@
+.bomber.dead {
+    display: none;
+}
+
+.bomber.iframe {
+    animation: iframe 0.15s infinite;
+}
+
+@keyframes iframe {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.ghost > .sprite {
+    width: calc(22px * var(--scaling));
+    height: calc(42px * var(--scaling));
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: calc(-17px * var(--scaling));
+
+    background-image: url("/imgs/dead.png");
+
+    z-index: 11;
+
+    animation: ghost 1s ease-out forwards;
+}
+
+
+@keyframes ghost {
+    100% {
+        top: calc(-45px * var(--scaling));
+        opacity: 0;
+    }
+}

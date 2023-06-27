@@ -1,0 +1,107 @@
+{{template "header"}}
+{{template "navBar"}}
+
+<div class="container-xl col-lg-12 mt-3">
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="card-title mb-4">
+                        <div class="d-flex justify-content-start">
+                            <div class="image-container">
+                                <img src="{{ .ArtistInfo.Image}}" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail">
+                            </div>
+                            <div class="userData col-md-6 ml-3">
+                                <div style="margin-left: 1.5rem;" class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <label class="" style="font-size: 1.2rem; font-weight: bold;">
+                                                Artist name: 
+                                            </label> {{.ArtistInfo.Name}}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <label class="" style="font-size: 1.2rem; font-weight: bold;">
+                                                Creation date: 
+                                            </label> {{.ArtistInfo.CreationDate}}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <label class="" style="font-size: 1.2rem; font-weight: bold;">
+                                                First album: 
+                                            </label> {{.ArtistInfo.FirstAlbum}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="Members" data-toggle="tab" onclick="openTab(this.id)" role="tab" aria-controls="membersInfo" >Members</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="Concerts" data-toggle="tab" onclick="openTab(this.id)" role="tab" aria-controls="concertInfo" >Concerts</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content ml-1" id="myTabContent">
+                                <div class="tab-pane fade active show" id="membersInfo" role="tabpanel" aria-labelledby="Members">
+                                    
+                                    {{ range .ArtistInfo.Members}} 
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <label style="font-weight:bold;">{{.}}</label>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                    {{ end}}
+
+                                </div>
+                                <div class="tab-pane fade" id="concertInfo" role="tabpanel" aria-labelledby="Concerts">
+                                    {{.ArtistInfoToPrint}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openTab(id){
+        var arr = ["Members", "membersInfo", "Concerts", "concertInfo"]
+
+        function emptyElement(givenID){
+            document.getElementById(givenID).classList.remove("active")
+            document.getElementById(givenID).classList.remove("show")
+        }
+        
+        arr.forEach(setID => emptyElement(setID));
+
+
+        activateElement = document.getElementById(id)
+        activateElementsDivID = activateElement.getAttribute("aria-controls")
+
+        if (activateElementsDivID != null){
+            activateElementsDiv = document.getElementById(activateElementsDivID)
+            
+            activateElementsDiv.classList.add("active")
+            activateElementsDiv.classList.add("show")
+            activateElement.classList.add("active")
+            activateElement.classList.add("show")
+        }
+    }
+</script>
+
+{{template "footer"}}

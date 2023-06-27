@@ -1,0 +1,86 @@
+{{- /*gotype: forum/internal/pages.UserData*/ -}} {{ define "content" }}
+<div class="top-bar">
+    <div class="top-bar-title">{{.User.Name}}</div>
+    {{ if eq .GenericData.User.UserID .User.UserID }}
+    <div id="settings-href" class="button">
+        {{ template "svg-settings" . }} Edit Profile
+    </div>
+    {{ end }}
+</div>
+<div class="profile-container">
+    {{ if eq .GenericData.User.UserID .User.UserID }}
+    <div class="profile-picture-container">
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" class="button" accept="image/*" name="profile-picture" id="profile-picture-file-input" onchange="form.submit();" hidden>
+            <label for="profile-picture-file-input" class="profile-user-image-label">
+            <div class="profile-image-hover-text">Change Picture</div>
+            <img class="profile-user-image" src="/profile-pictures/{{ .User.Image }}" alt="ERROR: Image file does not exist">
+        </label>
+        </form>
+    </div>
+    {{ else }}<img class="profile-user-image" src="/profile-pictures/{{ .User.Image }}" alt="ERROR: Image file does not exist">{{ end }}
+
+    <div class="profile-user-info-container">
+        <div class="profile-info">
+            <div class="profile-information-header">Contact Information:</div>
+            <div class="profile-information-data">Email: {{.User.Email}}</div>
+            <div class="profile-information-header">General Information:</div>
+            <div class="profile-information-data">Full name: {{ .User.FirstName }} {{ .User.LastName }}</div>
+            <div class="profile-information-data">Age: {{ age .User.Birthday }}</div>
+            <div class="profile-information-data" style="display: flex; align-items: center;"><span>Gender: F</span><input disabled type="range" min="0" max="1" step="0.0001" value="{{ .User.Gender }}"><span>M</span></div>
+            <div class="profile-information-data">Profile Created: {{ .User.Creation.Format "2 Jan 2006, 15:04" }}</div>
+            <div class="profile-information-data">Total Posts: {{ .User.Extras.TotalPosts }}</div>
+        </div>
+        <div class="profile-description">{{.User.Description}}</div>
+    </div>
+</div>
+{{ with .Error }}<span class="error"> {{ . }} </span> {{ end }}
+<div class="flex-table">
+    <input id="user-recent-posts" class="group-toggle" type="checkbox">
+    <label for="user-recent-posts" class="flex-row group-header">
+        <span>Recent posts</span>
+        <span class="grow"></span>
+        <span class="button small link-overlay"><a href="/search?authorID={{ .User.UserID }}"></a>See all</span>
+    </label>
+    <div class="group-content">
+        {{ if .UserPosts.HasResult }}
+            {{ .UserPosts.GetResult }}
+        {{ else }}
+            <div class="flex-row">
+                <h1>No results</h1>
+            </div>
+        {{ end }}
+    </div>
+    <input id="user-recent-likes" class="group-toggle" type="checkbox">
+    <label for="user-recent-likes" class="flex-row group-header">
+        <span>Liked posts</span>
+        <span class="grow"></span>
+        <span class="button small link-overlay"><a href="/search?likedByID={{ .User.UserID }}"></a>See all</span>
+    </label>
+    <div class="group-content">
+        {{ if .UserLikes.HasResult }}
+            {{ .UserLikes.GetResult }}
+        {{ else }}
+            <div class="flex-row">
+                <h1>No results</h1>
+            </div>
+        {{ end }}
+    </div>
+    <input id="user-recent-dislikes" class="group-toggle" type="checkbox">
+    <label for="user-recent-dislikes" class="flex-row group-header">
+        <span>Disliked posts</span>
+        <span class="grow"></span>
+        <span class="button small link-overlay"><a href="/search?dislikedByID={{ .User.UserID }}"></a>See all</span>
+    </label>
+    <div class="group-content">
+        {{ if .UserDislikes.HasResult }}
+            {{ .UserDislikes.GetResult }}
+        {{ else }}
+            <div class="flex-row">
+                <h1>No results</h1>
+            </div>
+        {{ end }}
+    </div>
+</div>
+<script src="/js/user.js"></script>
+{{ end }}

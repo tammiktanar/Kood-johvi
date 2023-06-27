@@ -1,0 +1,23 @@
+.profile {
+    width: 26rem; 
+    margin: auto;
+}
+
+.profile-pic {
+    width: 20rem; 
+    height: 20rem;
+}
+
+.profile-tab-div {
+    max-height: 368.500px;
+    min-height: 0px;
+    overflow: auto!important;
+}
+
+.ct-point {
+    stroke: #0d6efd!important;
+}
+
+.ct-line {
+    stroke: #0d6efd !important;
+}

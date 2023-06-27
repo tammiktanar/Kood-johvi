@@ -1,0 +1,95 @@
+{{template "base" .}}
+{{ define "content"}}
+
+<div class="container mt-5">
+    <div class="row gap-3 justify-content-center">
+        <div class="col-10 col-lg-6 mb-3">
+            <div class="card shadow card-bg">
+                <div class="row g-0 p-4">
+                    <div class="col-2 d-flex flex-column justify-content-center">
+                        <img src="../assets/userprofile.png" class="img-fluid rounded-end" alt="...">
+                        <p class="card-text text-center mt-1">{{.Post.Username}}</p>
+                    </div>
+                    <div class="col-10 d-flex flex-column justify-content-around  px-4 ">
+                        <h5 class="card-title">{{.Post.Title}}</h5>
+                        <p class="card-text">{{.Post.Body}}</p>
+
+                        <div class="c-footer">
+                            <p class="card-text d-inline-block m-0"><small class="text-muted ">Created:
+                                    {{.Post.CreationDate}}</small></p>
+
+                            <div class="likes float-end">
+                                <a href="/react?like=true&post={{ .Post.ID }}">
+                                    <i class="fas fa-thumbs-up"> {{.Post.LikeCount}}</i></a>
+                                <a href="/react?like=false&post={{ .Post.ID }}">
+                                    <i class="fas fa-thumbs-down"> {{.Post.DislikeCount}} </i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="w-100"></div>
+
+        {{ range .Comments }}
+
+        <div class="col-10 col-lg-6">
+            <div class="card card-bg mb-3">
+
+                <div class="row g-0 p-3 shadow">
+                    <div class="col-2 p-2">
+                        <img src="../assets/userprofile.png" class="img-fluid rounded-start" alt="...">
+                        <p class="card-text text-center mt-1">{{.Username }}</p>
+                    </div>
+                    <div class="col-10 col-md-10 d-flex flex-column justify-content-between py-2 px-4 ">
+                        <p class="card-text mt-4">{{.Body}}</p>
+
+                        <div class="c-footer">
+                            <p class="card-text d-inline-block"><small class="text-muted ">Created:
+                                    {{.CreationDate}}</small></p>
+
+                            <div class="likes float-end">
+                                <a href="/react?like=true&comment={{ .ID }}">
+                                    <i class="fas fa-thumbs-up"> {{.Likes}}</i></a>
+                                <a href="/react?like=false&comment={{ .ID }}">
+                                    <i class="fas fa-thumbs-down"> {{.Dislikes}}</i></a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ end }}
+        <div class="w-100"></div>
+        <div class="row justify-content-center">
+            <div class="col-6 col-md-6">
+                <div class="row justify-content-end">
+                    <div class="col-8">
+                        <form action="/addcomment?post={{.Post.ID}}" method="post">
+                            <textarea class="form-control shadow rounded" name="body" id="commenttext" rows="5"
+                                required></textarea>
+                            <button class="btn btn-dark float-end my-4" type="submit">Post</button>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+
+{{ end}}

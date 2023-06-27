@@ -1,0 +1,102 @@
+{{ template "base" .}}
+{{ define "content" }}
+
+
+<div class="container mt-5">
+    <div class="row">
+        {{ if and (not .LikedPosts) (not .CreatedPosts)}}
+        <div class="col-6-lg col-md d-flex justify-content-center mt-5">
+            <h2>You dont have any liked or created posts</h2>
+
+        </div>
+        {{ end }}
+
+
+        {{ if .LikedPosts}}
+        <div class="col-10 col-lg-6 mx-auto mb-5">
+            <div class="card w-100 card-bg">
+                <div class="card-header d-flex justify-content-between">
+                    <span class="align-self-center">Liked posts</span>
+                </div>
+                <ul class="list-group list-group-flush ">
+                    {{ range .LikedPosts }}
+
+                    <li class="list-group-item card-bg">
+                        <p class="card-text "><a href="/post?id={{.ID}}"
+                                class="link-light text-decoration-none text-capitalize"> <i class="fas fa-clone"></i>
+                                {{.Title}}</a>
+                        </p>
+
+
+                        <small class="text-muted">Tags:
+                            {{ range .Tags}}
+                            {{.}}
+                            {{end}}
+                        </small>
+                        <br>
+
+                        <div class="post-footer d-flex justify-content-between">
+                            <small class="text-muted">Topic started: {{.CreationDate}}</small>
+                            <div class="likes float-end">
+
+                                <i class="fas fa-thumbs-up"> {{.LikeCount}}</i>
+
+                                <i class="fas fa-thumbs-down"> {{.DislikeCount}}</i>
+
+                            </div>
+
+
+                        </div>
+
+                    </li>
+                    {{ end}}
+
+                </ul>
+            </div>
+        </div>
+        {{ end }}
+        <div class="w-100"></div>
+        {{ if .CreatedPosts }}
+        <div class="col-10 col-lg-6 mx-auto mb-5">
+            <div class="card card-bg">
+                <div class="card-header d-flex justify-content-between">
+                    <span class="align-self-center">Created posts</span>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {{ range .CreatedPosts }}
+
+                    <li class="list-group-item card-bg">
+                        <p class="card-text "><a href="/post?id={{.ID}}"
+                                class="link-light text-decoration-none text-capitalize"> <i class="fas fa-clone"></i>
+                                {{.Title}}</a>
+                        </p>
+
+
+                        <small class="text-muted">Tags:
+                            {{ range .Tags}}
+                            {{.}}
+                            {{end}}
+                        </small>
+                        <br>
+                        <div class="post-footer d-flex justify-content-between">
+                            <small class="text-muted">Topic started: {{.CreationDate}}</small>
+                            <div class="likes float-end">
+                                <i class="fas fa-thumbs-up"> {{.LikeCount}}</i>
+                                <i class="fas fa-thumbs-down"> {{.DislikeCount}}</i>
+                            </div>
+
+
+                        </div>
+                    </li>
+                    {{ end}}
+
+                </ul>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+
+</div>
+
+
+{{end}}

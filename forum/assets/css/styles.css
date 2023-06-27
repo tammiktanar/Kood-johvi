@@ -1,0 +1,199 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+
+:root {
+  --form-color: #434950;
+  --select-bg: #3a3f44;
+  --form-border: 1px solid rgb(97, 92, 92);
+  --lg-white: rgb(214, 207, 207);
+}
+
+body {
+  background-color: #263238;
+  font-family: "Roboto", sans-serif;
+}
+
+.card-bg {
+  background-color: #2e3a40;
+}
+
+.card-header {
+  background-color: #374c56;
+}
+.bgdark {
+  background-color: rgb(43, 39, 39);
+}
+
+.form-control,
+.form-control:focus {
+  background-color: var(--form-color);
+  color: var(--lg-white);
+  border: var(--form-border);
+}
+
+textarea#commenttext {
+  background-color: #363d41;
+}
+
+.container {
+  padding-top: 75px;
+}
+/* Icon colors */
+.fa-thumbs-up {
+  color: rgb(57, 124, 57);
+  margin-right: 0.5rem;
+}
+a .fa-thumbs-up:hover {
+  color: rgb(19, 141, 39);
+}
+
+.fa-thumbs-down {
+  color: rgb(221, 32, 32);
+}
+
+a .fa-thumbs-down:hover {
+  color: rgb(216, 0, 0);
+}
+
+.fa-star,
+.fa-clone {
+  color: rgb(219, 205, 205);
+}
+
+.link-light:hover {
+  background-color: #4e5358;
+  padding: 0.25rem;
+  border-radius: 2px;
+}
+/* Icon colors END*/
+
+/* Change autocomplete input background color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #434950 inset !important;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
+}
+/* Autocomplete input background END */
+
+.select2-results__options::-webkit-scrollbar-track {
+  background-color: var(--select-bg);
+}
+
+.select2-results__options::-webkit-scrollbar {
+  width: 12px;
+  border: 1px solid black;
+}
+
+.select2-results__options::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: rgb(86, 96, 122);
+}
+
+/* Select 2 with single option*/
+/* Select element */
+.select2-container--default .select2-selection--single {
+  background-color: var(--form-color);
+  border: var(--form-border);
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  color: var(--lg-white);
+}
+
+/* Hovering over otion */
+.select2-results__option--highlighted {
+  background-color: rgb(61, 76, 99) !important;
+}
+
+/* Selected option */
+.select2-results__option--selected {
+  background-color: rgb(65, 124, 124) !important;
+}
+
+/* Each result */
+#select2-bap-results {
+  background-color: var(--select-bg) !important;
+}
+
+/* Dropdown */
+.select2-container--open .select2-dropdown {
+  border: var(--form-border);
+  background-color: var(--select-bg) !important;
+  color: var(--lg-white) !important;
+}
+
+/* Search field inside dropdown*/
+.select2-search input,
+.select2-search input:focus {
+  outline: none;
+  background-color: var(--form-color);
+  color: var(--lg-white) !important;
+  border: var(--form-border) !important;
+}
+
+/* Text color for selected option */
+.select2-selection__rendered {
+  color: var(--lg-white) !important ;
+}
+
+/* Placeholder */
+.select2-selection__placeholder {
+  color: var(--lg-white) !important;
+  font-size: 0.95rem !important;
+}
+
+/* Remove the arrow which toggles dropdown */
+.select2-selection__arrow b {
+  display: none !important;
+}
+
+#searchbtn {
+  border: var(--form-border);
+  border-radius: 0 5px 5px 0;
+  border-left: none;
+  background-color: rgb(184, 184, 184);
+}
+/* Select 2 with single option END */
+
+/* Select 2 with multiple options  */
+/* Input with multiple options */
+span.selection .select2-selection.select2-selection--multiple {
+  background-color: var(--form-color) !important;
+  border: var(--form-border);
+}
+
+span.selection .select2-selection.select2-selection--multiple:focus-within {
+  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%) !important;
+}
+
+/* Input box text color */
+.select2-search__field {
+  color: var(--lg-white) !important;
+}
+
+/* Multiple options in input (tags) */
+#select2-bap2-container li.select2-selection__choice {
+  background-color: #3a3f46 !important;
+  color: var(--lg-white);
+  border: var(--form-border);
+}
+
+/* Removes weird background from input (tags) */
+.select2-search.select2-search--inline {
+  background-color: var(--form-color) !important;
+}
+
+/* Button for the tags */
+button.select2-selection__choice__remove {
+  border-right: var(--form-color) !important;
+}
+
+/* Hover states for the button for the tags */
+button.select2-selection__choice__remove:hover {
+  background-color: #59606b !important;
+}
+/* Select 2 with multiple options END */

@@ -1,0 +1,45 @@
+{{template "base" .}}
+{{define "content"}}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8 col-lg-4">
+
+            <h2 class="text-center my-5"">Enter your credentials</h2>
+                {{ if .LoginMsgs.SuccesfulRegister}}
+                <h3>Registration was succesful!</h3>
+                {{ else if .LoginMsgs.LoginRequired}}
+                <h3>Please log in to continue!</h3>
+                {{ end }}
+                <form action=" /loginauth" method="post" class="mt-4">
+                <!-- This form sends the entered data to loginauth, which will authenticate -->
+                {{ if .LoginMsgs.NotFound }}
+                <div class="error_msg">
+                    <p>User doesnt exist</p>
+                </div>
+                {{ end}}
+
+                {{ if .LoginMsgs.WrongPassword}}
+                <div class="error_msg">
+                    <p>Wrong passwords</p>
+                </div>
+                {{ end }}
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Username</label>
+                    <input type="text" name="username" id="exampleFormControlInput1" class="form-control" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="exampleFormControlInput2" class="form-label">Password</label>
+                    <input type="password" name="password" id="exampleFormControlInput2" class="form-control" required>
+                </div>
+
+
+                <button class="btn btn-dark float-end" type="submit" id="custom-btn">Login</button>
+                </form>
+        </div>
+    </div>
+</div>
+
+{{end}}

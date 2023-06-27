@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    image-rendering: pixelated;
+
+    background-size: contain;
+}
+
+body {
+    min-height: 100vh;
+    background: #333;
+
+    display: flex;
+    justify-content: safe center;
+    align-items: safe center;
+    flex-direction: column;
+
+    --scaling: 0;
+
+    --white: #eee;
+}
+
+#wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#app {
+    position: relative;
+    box-sizing: content-box;
+    width: calc(751px * var(--scaling));
+    height: calc(408px * var(--scaling));
+
+    overflow: hidden;
+    /*background: #f9f9f9;*/
+    outline: none;
+
+    flex-shrink: 0;
+}
+
+#app > * {
+    position: absolute;
+}
+
+#app[data-scene="main-menu"],
+#app[data-scene="lobby-scene"],
+#app[data-scene="start-scene"] {
+	background-image: url("/imgs/frame_chat.webp");
+}
+
+#app[data-scene="game-scene"]{
+	background-image: url("/imgs/ui_chat.webp");
+}
+
+#chat {
+    position: absolute;
+    left: calc(551px * var(--scaling));
+    top: 0;
+    width: calc(200px * var(--scaling));
+    height: 100%;
+
+    padding: calc(9px * var(--scaling));
+    padding-left: 0;
+}
+
+#grid {
+    overflow: hidden;
+}
+
+#grid > * {
+    position: absolute;
+}
+
+
+.wall-block {
+    z-index: 7;
+    background-image: url('/imgs/wall.png');
+}
+
+.gray-wall-block {
+    z-index: 12;
+    background-image: url("/imgs/wall-dark.png");
+}
+
+.crate-block {
+    z-index: 5;
+    background-image: url('/imgs/barrel.png');
+}
+
+.no-select {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.chat-message {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+.bomber {
+    /* background-color: red; */
+}
+
+#winner-overlay {
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    animation: fade-in 0.5s forwards ease-in-out;
+
+    background-image: url("/imgs/ui_chat.webp");
+    background-position: calc(-92px * var(--scaling)) calc(-9px * var(--scaling));
+    background-size: calc(751px * var(--scaling)) calc(408px * var(--scaling));
+}
+
+#winner-text {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+
+    color: var(--white);
+    text-shadow: calc(2px * var(--scaling)) calc(2px * var(--scaling)) black;
+    font-family: "withFireFont", sans-serif;
+    font-size: calc(20px * var(--scaling));
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#old-ver-button,
+#main-menu > .lobby-code,
+#main-menu > .user-name-field {
+    margin-top: calc(12px * var(--scaling));
+}
+
+#title-wrapper {
+    --margin: calc(4px * var(--scaling));
+
+    width: calc(100% - var(--margin));
+    max-width: calc(751px * var(--scaling));
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    margin: var(--margin);
+}
+
+#title-wrapper > div {
+
+    display: flex;
+    align-items: center;
+    gap: calc(4px * var(--scaling));
+
+    font-family: "withFireFont", sans-serif;
+    color: var(--white);
+}
+
+#title-wrapper label {
+    font-size: calc(20px * var(--scaling));
+    text-shadow: calc(2px * var(--scaling)) calc(2px * var(--scaling)) black;
+}
+
+#title-wrapper button {
+    font-family: "withFireFont", sans-serif;
+    font-size: calc(10px * var(--scaling));
+    text-shadow: calc(1px * var(--scaling)) calc(1px * var(--scaling)) white;
+
+    width: calc(30px * var(--scaling));
+    border-radius: 0;
+
+    cursor: pointer;
+}
+
+#title-wrapper #title {
+    --shadow-size: 6px;
+
+
+    font-size: calc(30px * var(--scaling));
+    text-shadow: calc(3px * var(--scaling)) calc(3px * var(--scaling)) black;
+}

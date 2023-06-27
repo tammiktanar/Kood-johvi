@@ -1,0 +1,52 @@
+{{template "base" .}}
+{{define "content"}}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8 col-lg-4">
+            <h2 class="text-center my-5">Create an account</h2>
+            {{ if .RegMsgs.TakenEmail}}
+            <p class="error">Email already exists!</p>
+            {{ end}}
+
+            {{ if .RegMsgs.TakenUn}}
+            <p class="error">Username already exists!</p>
+            {{ end}}
+
+            {{ if .RegMsgs.PswrdsNotEq}}
+            <p class="error">Passwords dont match!</p>
+
+            {{ end}}
+            <form action="/registerauth" method="post">
+
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="username" name="username" id="username" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="password2" class="form-label">Retype password</label>
+                    <input type="password" name="password2" id="password2" class="form-control" required>
+                </div>
+
+
+
+                <button class="btn btn-dark float-end" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{end}}

@@ -1,0 +1,114 @@
+.bomb {
+    --bomb-1: url('/imgs/w_bomb1.png');
+    --bomb-2: url('/imgs/w_bomb2.png');
+    --bomb-3: url('/imgs/w_bomb3.png');
+}
+
+.bomb > .overlay {
+    --bomb-1: url('/imgs/wo_bomb1.png');
+    --bomb-2: url('/imgs/wo_bomb2.png');
+    --bomb-3: url('/imgs/wo_bomb3.png');
+}
+
+.explosion > .sprite {
+    --bomb-cross: url("/imgs/w_explosion1.png");
+    --bomb-line: url("/imgs/w_explosion2.png");
+    --bomb-line-end: url("/imgs/w_explosion3.png");
+}
+
+.bomb,
+.bomb > .overlay{
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: bomb-animation 0.3s steps(1, start) infinite;  
+    z-index: 2;
+
+    background-size: calc(25px * var(--scaling)) calc(20px * var(--scaling));
+}
+
+.bomb > .overlay {
+    width: 100%;
+    height: 100%;
+}
+
+.bomb.primed,
+.bomb.primed > .overlay {
+    background-image: var(--bomb-3);
+    animation: unset;
+}
+
+.explosion {
+    --explosion-time: 2s;
+}
+
+.explosion > .sprite {
+    z-index: 6;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    width: calc(32px * var(--scaling));
+    height: calc(32px * var(--scaling));
+}
+
+.explosion.right > .sprite {
+    transform: translate(-50%,-50%) scaleX(-1);
+}
+
+.explosion.left > .sprite {
+
+}
+
+.explosion.up > .sprite {
+    transform: translate(-50%,-50%) rotate(90deg) ;
+}
+
+.explosion.down > .sprite {
+    transform: translate(-50%,-50%) rotate(90deg) scaleX(-1);
+}
+
+.explosion.cross > .sprite  {
+    background-image: var(--bomb-cross) !important;
+    background-position: center;
+}
+.explosion.end > .sprite {
+    background-image: var(--bomb-line-end);
+    animation: bomb-explosion var(--explosion-time);
+
+}
+
+.explosion.line > .sprite {
+    background-image: var(--bomb-line);
+    animation: bomb-explosion var(--explosion-time);
+
+}
+
+@keyframes bomb-animation {
+    50% {
+        background-image: var(--bomb-1);
+    }
+    
+    100%{
+        background-image: var(--bomb-2);
+    }
+}
+
+
+@keyframes bomb-explosion{
+    0% {
+
+        background-size: 100% 10%;
+    }
+
+    10% {
+        background-size: 100% 100%;
+    }
+
+    100% {
+        background-size: 100% 100%;
+    }
+}

@@ -1,0 +1,147 @@
+[config]
+skip_core_tasks = true
+
+
+[env]
+CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
+CARGO_MAKE_WORKSPACE_INCLUDE_MEMBERS = ["robots/*"]
+CARGO_MAKE_WORKSPACE_SKIP_MEMBERS = ["robots/template"]
+ROOT = "${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}"
+RELEASE_ARG = "--"
+
+[env.BINARY_PATH]
+source = "${CARGO_MAKE_RUST_TARGET_OS}"
+default_value = "target/debug"
+mapping = { "windows" = "target\\x86_64-unknown-linux-musl\\debug", "mac" = "target/x86_64-unknown-linux-musl/debug"}
+
+[env.release]
+RELEASE_ARG = "--release"
+
+[env.release.BINARY_PATH]
+source = "${CARGO_MAKE_RUST_TARGET_OS}"
+default_value = "target/release"
+mapping = { "windows" = "target\\x86_64-unknown-linux-musl\\release", "mac" = "target/x86_64-unknown-linux-musl/release"}
+
+[tasks.do-nothing]
+
+# INIT
+
+[tasks.init]
+workspace = false
+dependencies = [
+    "linux-toolchain",
+    "clean-engine",
+    "download-engine",
+    "extract-engine",
+    "copy-script"
+]
+
+[tasks.linux-toolchain]
+alias="dl-linux-toolchain"
+linux_alias="empty"
+
+[tasks.dl-linux-toolchain]
+command = "rustup"
+args = ["target", "add", "x86_64-unknown-linux-musl"]
+
+[tasks.clean-engine]
+condition = { files_exist = ["./game_engine"] }
+script_runner = "@shell"
+script = """
+rm -rf game_engine
+"""
+
+[tasks.download-engine]
+script_runner = "@shell"
+script = """
+curl https://assets.01-edu.org/filler/filler.zip --output filler.zip
+"""
+
+[tasks.extract-engine]
+script_runner = "@rust"
+script = """
+//! ```cargo
+//! [dependencies]
+//! zip = { version = "0.6.3", default-features = false }
+//! zip-extensions = "0.6.1"
+//! ```
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    println!("Unzipping...");
+    zip_extensions::zip_extract(&"filler.zip".into(), &".".into())?;
+    std::fs::rename("docker_image", "game_engine")?;
+    Ok(())
+}
+"""
+
+[tasks.copy-script]
+script_runner = "@shell"
+script = """
+set +x
+cp "./template_run.sh" "./game_engine/solution/run.sh"
+"""
+
+
+# BUILDING
+
+[tasks.default]
+alias = "robots"
+
+[tasks.robots]
+dependencies = [
+    "check-engine",
+    "build",
+    "copy"
+]
+
+[tasks.check-engine]
+condition = { files_not_exist = ["${ROOT}/game_engine"] }
+script_runner = "@shell"
+script = """
+    set +x
+    echo !!! You must run 'cargo make init' !!!
+    exit 1
+"""
+
+[tasks.build]
+alias="build-other"
+linux_alias="build-linux"
+
+[tasks.build-linux]
+clear = true
+command = "cargo"
+args = ["build", "${RELEASE_ARG}"]
+
+[tasks.build-other]
+clear = true
+command = "cargo"
+args = ["build", "--target", "x86_64-unknown-linux-musl", "${RELEASE_ARG}"]
+
+[tasks.copy]
+script_runner = "@shell"
+script = """
+set +x
+cp "${ROOT}/${BINARY_PATH}/${CARGO_MAKE_CRATE_NAME}" "${ROOT}/game_engine/solution"
+"""
+
+
+# RUNNING
+
+[tasks.run]
+workspace = false
+dependencies = [
+    "check-engine",
+    "docker-build",
+    "docker-run",
+]
+
+[tasks.docker-build]
+cwd = "./game_engine"
+command = "docker"
+args = ["build", "-t", "filler", "."]
+
+[tasks.docker-run]
+cwd = "./game_engine"
+#env = { ROBOT1 = }
+command = "docker"
+args = ["run", "-v", "${CARGO_MAKE_WORKING_DIRECTORY}/game_engine/solution:/filler/solution", "--rm", "-it", "filler"]
+ignore_errors = true

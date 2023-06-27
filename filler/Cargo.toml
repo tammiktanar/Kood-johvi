@@ -1,0 +1,15 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "robots/*",
+    "lib"
+]
+
+exclude = [
+    "robots/template"
+]
+
+default-members = [
+    "robots/*"
+]
